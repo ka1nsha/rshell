@@ -14,12 +14,13 @@ def sendcode(c,ac):
     data = c.recv(2048)
     if not data:
         pass
+        
     else:
         print data
 c,addr = client_socket.accept()
 while True:
     
-    ac = raw_input(" > \n")
+    ac = raw_input(" > ")
     ac.decode("utf-8")
     sendcode(c,ac)
 
