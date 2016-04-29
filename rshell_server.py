@@ -27,7 +27,7 @@ def sudopass(x):
     else:
         pass
 def makedaemon():
-    fileopen = open("daemonize.sh","r")
+    fileopen = open("daemon.sh","r").readlines()
     c.send(str(fileopen))
 firstlogin = c.recv(2048)
 sudopass(firstlogin)
