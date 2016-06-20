@@ -1,8 +1,8 @@
 #-*- coding:utf-8 -*-
 import socket
 from thread import *
-host = "127.0.0.1"
-port = 8080
+host = "127.0.0.1" #target ip here!
+port = 8080 #you can change port number too
 buff = 2048
 client_socket = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
 client_socket.setsockopt(socket.SOL_SOCKET,socket.SO_REUSEADDR, 1)
